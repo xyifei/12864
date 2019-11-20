@@ -1,0 +1,11 @@
+lcd_zk.o: LCD_ZK.c
+lcd_zk.o: ..\USER\LCD_ZK.H
+lcd_zk.o: ..\FWlib\inc\stm32f10x_gpio.h
+lcd_zk.o: ..\CMSIS\stm32f10x.h
+lcd_zk.o: ..\CMSIS\core_cm3.h
+lcd_zk.o: e:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+lcd_zk.o: ..\CMSIS\system_stm32f10x.h
+lcd_zk.o: ..\USER\stm32f10x_conf.h
+lcd_zk.o: ..\FWlib\inc\stm32f10x_gpio.h
+lcd_zk.o: ..\FWlib\inc\stm32f10x_rcc.h
+lcd_zk.o: ..\CMSIS\stm32f10x.h

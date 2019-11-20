@@ -1,0 +1,11 @@
+..\output\lcd_zk.o: LCD_ZK.c
+..\output\lcd_zk.o: ..\USER\LCD_ZK.H
+..\output\lcd_zk.o: ..\FWlib\inc\stm32f10x_gpio.h
+..\output\lcd_zk.o: ..\CMSIS\stm32f10x.h
+..\output\lcd_zk.o: ..\CMSIS\core_cm3.h
+..\output\lcd_zk.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\output\lcd_zk.o: ..\CMSIS\system_stm32f10x.h
+..\output\lcd_zk.o: ..\USER\stm32f10x_conf.h
+..\output\lcd_zk.o: ..\FWlib\inc\stm32f10x_gpio.h
+..\output\lcd_zk.o: ..\FWlib\inc\stm32f10x_rcc.h
+..\output\lcd_zk.o: ..\CMSIS\stm32f10x.h
