@@ -3,11 +3,11 @@
 <title>Static Call Graph - [..\Output\STM32-DEMO.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\Output\STM32-DEMO.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Nov 20 12:37:34 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Nov 21 10:59:46 2019
 <BR><P>
-<H3>Maximum Stack Usage =        168 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         56 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-main &rArr; display_GB2312_string &rArr; get_n_bytes_data_from_ROM &rArr; get_data_from_ROM &rArr; GBZK_ROMOUTRESET &rArr; GPIO_Init
+main &rArr; display_graphic_8x16 &rArr; lcd_address &rArr; transfer_command_lcd
 <P>
 <H3>
 Mutually Recursive functions
@@ -305,17 +305,17 @@ Global Symbols
 <P><STRONG><a name="[a]"></a>WWDG_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 498 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = main &rArr; display_GB2312_string &rArr; get_n_bytes_data_from_ROM &rArr; get_data_from_ROM &rArr; GBZK_ROMOUTRESET &rArr; GPIO_Init
+<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 402 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = main &rArr; display_graphic_8x16 &rArr; lcd_address &rArr; transfer_command_lcd
 </UL>
-<BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initial_lcd
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_string_5x7
-<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x16
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_GB2312_string
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_128x64
-<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+<BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initial_lcd
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_8x16
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_32x32
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x32
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_128x64
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_screen
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_graphic_16x32
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
@@ -358,49 +358,45 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initial_lcd
 </UL>
 
-<P><STRONG><a name="[57]"></a>GBZK_ROMOUTSET</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, lcd_zk.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = GBZK_ROMOUTSET &rArr; GPIO_Init
-</UL>
-<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_data_from_ROM
+<P><STRONG><a name="[57]"></a>GBZK_ROMOUTSET</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, lcd_zk.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
 
-<P><STRONG><a name="[58]"></a>GBZK_ROMOUTRESET</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, lcd_zk.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = GBZK_ROMOUTRESET &rArr; GPIO_Init
-</UL>
-<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_data_from_ROM
+<P><STRONG><a name="[58]"></a>GBZK_ROMOUTRESET</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, lcd_zk.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
 
-<P><STRONG><a name="[50]"></a>transfer_command_lcd</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, lcd_zk.o(.text))
+<P><STRONG><a name="[59]"></a>transfer_command_lcd</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, lcd_zk.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = transfer_command_lcd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_5x7
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
+<BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_5x7
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initial_lcd
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_screen
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5a]"></a>transfer_data_lcd</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, lcd_zk.o(.text))
+<P><STRONG><a name="[5b]"></a>transfer_data_lcd</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, lcd_zk.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = transfer_data_lcd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_5x7
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_8x16
-<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x16
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_128x64
+<BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_5x7
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_24x24
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x16
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_3x1
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_8x16
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_32x32
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x32
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_128x64
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_screen
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_graphic_16x32
 </UL>
 
-<P><STRONG><a name="[4e]"></a>delay</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, lcd_zk.o(.text))
+<P><STRONG><a name="[4f]"></a>delay</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, lcd_zk.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initial_lcd
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -409,116 +405,124 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = initial_lcd &rArr; GBZK_GPIO_Config &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GBZK_GPIO_Config
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
-<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5b]"></a>lcd_address</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, lcd_zk.o(.text))
+<P><STRONG><a name="[5c]"></a>lcd_address</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, lcd_zk.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = lcd_address &rArr; transfer_command_lcd
 </UL>
-<BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_8x16
-<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x16
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_128x64
+<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_24x24
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x16
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_3x1
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_8x16
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_32x32
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x32
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_128x64
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_graphic_16x32
 </UL>
 
 <P><STRONG><a name="[4c]"></a>clear_screen</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, lcd_zk.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = clear_screen &rArr; transfer_data_lcd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4d]"></a>display_128x64</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, lcd_zk.o(.text))
+<P><STRONG><a name="[50]"></a>display_128x64</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, lcd_zk.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = display_128x64 &rArr; lcd_address &rArr; transfer_command_lcd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[51]"></a>display_graphic_16x16</STRONG> (Thumb, 86 bytes, Stack size 24 bytes, lcd_zk.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = display_graphic_16x16 &rArr; lcd_address &rArr; transfer_command_lcd
-</UL>
-<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-</UL>
-<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_GB2312_string
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[5d]"></a>display_3x1</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, lcd_zk.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 </UL>
 
-<P><STRONG><a name="[5c]"></a>display_graphic_8x16</STRONG> (Thumb, 78 bytes, Stack size 24 bytes, lcd_zk.o(.text))
+<P><STRONG><a name="[5e]"></a>display_graphic_16x16</STRONG> (Thumb, 86 bytes, Stack size 24 bytes, lcd_zk.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+</UL>
+
+<P><STRONG><a name="[4e]"></a>display_graphic_8x16</STRONG> (Thumb, 84 bytes, Stack size 24 bytes, lcd_zk.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = display_graphic_8x16 &rArr; lcd_address &rArr; transfer_command_lcd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_GB2312_string
+<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_string_8x16
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5d]"></a>display_graphic_5x7</STRONG> (Thumb, 100 bytes, Stack size 32 bytes, lcd_zk.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = display_graphic_5x7 &rArr; transfer_data_lcd
+<P><STRONG><a name="[52]"></a>display_graphic_16x32</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, lcd_zk.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = display_graphic_16x32 &rArr; lcd_address &rArr; transfer_command_lcd
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
-</UL>
-<BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_string_5x7
-</UL>
-
-<P><STRONG><a name="[5e]"></a>send_command_to_ROM</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, lcd_zk.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = send_command_to_ROM
-</UL>
-<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-</UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_n_bytes_data_from_ROM
-</UL>
-
-<P><STRONG><a name="[61]"></a>get_n_bytes_data_from_ROM</STRONG> (Thumb, 98 bytes, Stack size 32 bytes, lcd_zk.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = get_n_bytes_data_from_ROM &rArr; get_data_from_ROM &rArr; GBZK_ROMOUTRESET &rArr; GPIO_Init
-</UL>
-<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_command_to_ROM
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_data_from_ROM
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-</UL>
-<BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_string_5x7
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_GB2312_string
-</UL>
-
-<P><STRONG><a name="[4f]"></a>display_GB2312_string</STRONG> (Thumb, 364 bytes, Stack size 88 bytes, lcd_zk.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = display_GB2312_string &rArr; get_n_bytes_data_from_ROM &rArr; get_data_from_ROM &rArr; GBZK_ROMOUTRESET &rArr; GPIO_Init
-</UL>
-<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_n_bytes_data_from_ROM
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_8x16
-<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x16
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[52]"></a>display_string_5x7</STRONG> (Thumb, 126 bytes, Stack size 48 bytes, lcd_zk.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = display_string_5x7 &rArr; get_n_bytes_data_from_ROM &rArr; get_data_from_ROM &rArr; GBZK_ROMOUTRESET &rArr; GPIO_Init
+<P><STRONG><a name="[5f]"></a>display_graphic_24x24</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, lcd_zk.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 </UL>
-<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_n_bytes_data_from_ROM
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_5x7
+
+<P><STRONG><a name="[4d]"></a>display_graphic_32x32</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, lcd_zk.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = display_graphic_32x32 &rArr; lcd_address &rArr; transfer_command_lcd
+</UL>
+<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+</UL>
+<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[60]"></a>display_graphic_5x7</STRONG> (Thumb, 94 bytes, Stack size 32 bytes, lcd_zk.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+</UL>
+
+<P><STRONG><a name="[61]"></a>display_string_8x16</STRONG> (Thumb, 54 bytes, Stack size 24 bytes, lcd_zk.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_8x16
+</UL>
+
+<P><STRONG><a name="[51]"></a>clear_graphic_16x32</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, lcd_zk.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = clear_graphic_16x32 &rArr; lcd_address &rArr; transfer_command_lcd
+</UL>
+<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_address
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -614,60 +618,62 @@ Global Symbols
 
 <P><STRONG><a name="[8d]"></a>GPIO_StructInit</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[60]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_data_from_ROM
-</UL>
+<P><STRONG><a name="[8e]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[8e]"></a>GPIO_ReadInputData</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[8f]"></a>GPIO_ReadInputData</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[8f]"></a>GPIO_ReadOutputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[90]"></a>GPIO_ReadOutputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[90]"></a>GPIO_ReadOutputData</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[91]"></a>GPIO_ReadOutputData</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[59]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_n_bytes_data_from_ROM
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_command_to_ROM
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_5x7
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_8x16
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_data_from_ROM
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
+<P><STRONG><a name="[5a]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_5x7
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_24x24
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x16
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_3x1
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initial_lcd
-<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x16
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_128x64
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_8x16
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_32x32
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x32
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_128x64
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_screen
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_graphic_16x32
 </UL>
 
 <P><STRONG><a name="[56]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_n_bytes_data_from_ROM
-<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_command_to_ROM
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_5x7
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_8x16
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<BR><BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_5x7
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_24x24
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x16
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_3x1
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_data_lcd
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GBZK_GPIO_Config
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_data_from_ROM
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transfer_command_lcd
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initial_lcd
-<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x16
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_128x64
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_8x16
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_32x32
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_graphic_16x32
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_128x64
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_screen
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_graphic_16x32
 </UL>
 
-<P><STRONG><a name="[91]"></a>GPIO_WriteBit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[92]"></a>GPIO_WriteBit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[92]"></a>GPIO_Write</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[93]"></a>GPIO_Write</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[93]"></a>GPIO_PinLockConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[94]"></a>GPIO_PinLockConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[94]"></a>GPIO_EventOutputConfig</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[95]"></a>GPIO_EventOutputConfig</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[95]"></a>GPIO_EventOutputCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[96]"></a>GPIO_EventOutputCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[96]"></a>GPIO_PinRemapConfig</STRONG> (Thumb, 138 bytes, Stack size 20 bytes, stm32f10x_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[97]"></a>GPIO_PinRemapConfig</STRONG> (Thumb, 138 bytes, Stack size 20 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[97]"></a>GPIO_EXTILineConfig</STRONG> (Thumb, 66 bytes, Stack size 12 bytes, stm32f10x_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[98]"></a>GPIO_EXTILineConfig</STRONG> (Thumb, 66 bytes, Stack size 12 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[98]"></a>GPIO_ETH_MediaInterfaceConfig</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
+<P><STRONG><a name="[99]"></a>GPIO_ETH_MediaInterfaceConfig</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
 
 <P><STRONG><a name="[47]"></a>SystemInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, system_stm32f10x.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SystemInit &rArr; SetSysClock &rArr; SetSysClockTo72
@@ -676,7 +682,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(.text)
 </UL>
-<P><STRONG><a name="[99]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, system_stm32f10x.o(.text), UNUSED)
+<P><STRONG><a name="[9a]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, system_stm32f10x.o(.text), UNUSED)
 
 <P><STRONG><a name="[4a]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
@@ -684,29 +690,21 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[9a]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[9b]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
-<P><STRONG><a name="[9b]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[9c]"></a>__decompress</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
 
-<P><STRONG><a name="[9c]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[9d]"></a>__decompress1</STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
 
-<P><STRONG><a name="[9d]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[9e]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+
+<P><STRONG><a name="[9f]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+
+<P><STRONG><a name="[a0]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 <P>
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[5f]"></a>get_data_from_ROM</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, lcd_zk.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = get_data_from_ROM &rArr; GBZK_ROMOUTRESET &rArr; GPIO_Init
-</UL>
-<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GBZK_ROMOUTRESET
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GBZK_ROMOUTSET
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-</UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_n_bytes_data_from_ROM
-</UL>
-
 <P><STRONG><a name="[68]"></a>SetSysClockTo72</STRONG> (Thumb, 214 bytes, Stack size 12 bytes, system_stm32f10x.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetSysClockTo72
 </UL>

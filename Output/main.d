@@ -9,3 +9,4 @@
 ..\output\main.o: ..\FWlib\inc\stm32f10x_rcc.h
 ..\output\main.o: led.h
 ..\output\main.o: LCD_ZK.h
+..\output\main.o: string.h
